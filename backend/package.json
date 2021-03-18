@@ -1,0 +1,25 @@
+{
+  "name": "session",
+  "version": "1.0.0",
+  "description": "Example to implement express session",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^4.2.2",
+    "connect-mongodb-session": "^2.4.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongo-store": "0.0.2",
+    "mongoose": "^5.11.19",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.6"
+  }
+}
