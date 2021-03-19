@@ -9,6 +9,9 @@ const mongoose=require('mongoose');
 const database=require('./database/database')
 const buyerModel=require('./Models/BuyerModel');
 const productCategory=require('./routers/ProductsCategory')
+
+let cors = require('cors');
+app.use(cors());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 

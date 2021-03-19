@@ -6,11 +6,11 @@ class LoginForm extends Component {
 
     this.state = {
       username: "",
-      password:""
+      password: "",
     };
     this.usernameHandler = this.usernameHandler.bind(this);
     this.passwordHandler = this.passwordHandler.bind(this);
-   
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   usernameHandler(event) {
@@ -50,6 +50,9 @@ class LoginForm extends Component {
               onChange={this.passwordHandler}
               placeholder="password"
             />
+          </div>
+          <div className="formControl">
+            <input type="button" value="submit" />
           </div>
         </form>
       </React.Fragment>

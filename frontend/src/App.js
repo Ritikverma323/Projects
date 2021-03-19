@@ -4,7 +4,8 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Clients from './pages/Clients'
-import ComponentHeader from './Components/ComponentHeader'
+import ComponentHeader from './Components/Header/ComponentHeader'
+
 import UserLogin from './pages/UserLogin'
 import RegisterUser from './pages/USerRegister'
 function App() {

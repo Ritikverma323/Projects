@@ -3,8 +3,9 @@ const router= express.Router();
 
 const usersModel=require('../Models/usersModel')
 const bodyParser=require('body-parser');
-router.get('/register',(req,res)=>{
-res.render('register.ejs');
+router.get('/buyer-register',(req,res)=>{
+
+
 })
 
 router.post('/register',async(req,res)=>{
