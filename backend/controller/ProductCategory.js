@@ -9,61 +9,50 @@ const ProductsCategory = (req, res) => {
       //getSubCategories();
     } else {
       //res.send(allCategory);
-      res.send(getparentCategories(allcategories));
-    }
-  });
-};
+      const categories=getCategories(allcategories);
+      res.send(allcategories);
 
-function countcategory(category) {
-  let count = 0;
-
-  // looping through the items
-  for (let i = 0; i < category.length; i++) {
-    // check if the character is at that position
-    if (category.charAt(i) === "/") {
-      count += 1;
     }
-  }
-  return count;
+  }).sort({ path: 1, categorylevel: 1 });
+
+ 
 }
 
-const getparentCategories = (allcategories) => {
-  const parentCategory = allcategories.filter((categories) => {
-    return categories.parent == null;
-  });
+const getCategories=(allcategories)=>{
 
-  const category = parentCategory.map((categories, index) => {
-    const categorylevel = 1;
-    const subcategories = getSubCategories(
-      categories,
-      categorylevel,
-      allcategories
-    );
+  
+const parentCategories=allcategories.filter((categories)=>{
+  return categories.parent==null
+})
 
-    console.log("parentcategory",parentCategory);
-    console.log("subcategory",subcategories)
-     if(subcategories.length){
-      return (parentCategory[index].nestedsubcategory=(subcategories));
+const subcategory = parentCategories.map((categories)=>{
 
-     }
-     else{
-      return (parentCategory);
+ const category1= allcategories.filter((categories1)=>{
 
-     }
-  });
+    if(categories1.parent.includes(categories.path)){
+      return categories1.parent;
+      //console.log(categories.path.includes(categories1.parent))
+    }
+  })
+  return category1
+ 
 
-  return category;
-};
 
-const getSubCategories = (parentCategory, categorylevel, allcategories) => {
-  const subcategories = allcategories.filter((subcategory) => {
-    return (
-      subcategory.path.includes(parentCategory.path) &&
-      countcategory(subcategory.path) === categorylevel + 1
-    );
-  });
-  return subcategories;
-};
+})
+
+
+
+
+  
+  return subcategory;
+}
+  
+
+
+
+
+
+
 
 const addNewProductCategory = (req, res) => {
   console.log("post request");
