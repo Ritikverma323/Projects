@@ -5,8 +5,10 @@ const { uuid } = require('uuidv4');
 const schema=mongoose.Schema;
 
 const ProductCategorySchema=new schema({
-    category:{type:String,required:true},
-    path:{type:String,required:false}
+    category:{type:String,required:true,unique:true},
+    path:{type:String,required:true,unique:true},
+    parent:{type:String,default:null},
+    categorylevel:{type:Number,required:true}
 
 });
 

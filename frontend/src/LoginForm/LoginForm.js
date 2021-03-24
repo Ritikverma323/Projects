@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -34,27 +37,33 @@ class LoginForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <form method="POST" className="details" onSubmit={this.handleSubmit}>
-          <div className="formControl">
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.usernameHandler}
-              placeholder="username"
-            />
-          </div>
-          <div className="formControl">
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.passwordHandler}
-              placeholder="password"
-            />
-          </div>
-          <div className="formControl">
-            <input type="button" value="submit" />
-          </div>
-        </form>
+        <Paper variant="outlined" square>
+          <form method="POST" className="details" onSubmit={this.handleSubmit}>
+            <div className="form__control">
+              <TextField
+                label="username"
+                variant="outlined"
+                value={this.state.username}
+                onChange={this.usernameHandler}
+              />
+            </div>
+            <div className="form__control">
+              <TextField
+                label="Password"
+                variant="outlined"
+                type="password"
+                value={this.state.password}
+                onChange={this.passwordHandler}
+              />
+            </div>
+
+            <div className="formControl">
+              <Button type="submit" variant="contained" color="primary" disableElevation>
+                submit
+              </Button>
+            </div>
+          </form>
+        </Paper>
       </React.Fragment>
     );
   }

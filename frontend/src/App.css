@@ -62,3 +62,17 @@ color :rgb(245, 105, 105);
 text-transform: capitalize;
 
 }
+
+form{
+  margin:200px auto;
+  
+}
+.MuiPaper-root.MuiPaper-outlined{
+box-shadow: #282c34;
+background-color: aliceblue;
+}
+
+.form__control{
+  margin:20px;
+  
+}
