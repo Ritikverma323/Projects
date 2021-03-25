@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import axios from "axios";
+
 function ProductCategory() {
   const [productCategory, SetProductCategory] = useState([]);
 
@@ -18,69 +19,47 @@ function ProductCategory() {
       });
   }, []);
 
-  console.log(productCategory);
-
-  function countcategory(category) {
-    let count = 0;
-
-    // looping through the items
-    for (let i = 0; i < category.length; i++) {
-      // check if the character is at that position
-      if (category.charAt(i) === "/") {
-        count += 1;
-      }
-    }
-    return count;
-  }
-
-  function getparentCategories() {
-    const parentCategory = productCategory.filter((parentscategory) => {
-      return parentscategory.parent == null;
-    });
-    return parentCategory;
-  }
-  function getSubCategories(parentCategory, subcategorylevel) {
-    console.log(parentCategory);
-    const subCategories = productCategory.filter((subcategory) => {
-      console.log(subcategory.path.includes(parentCategory));
-      return (
-        subcategory.path.includes(parentCategory) &&
-        subcategory.parent !== null &&
-        countcategory(subcategory.path) === subcategorylevel + 1
-      );
-    });
-
-    console.log(subCategories, productCategory);
+  function getproductCategory(productCategory) {
     return (
-      <ul>
-        {subCategories.map((subcategory) => {
-          return <li>{subcategory.category + "1"}</li>;
+      <ul className={`categories__${ productCategory[0] != undefined
+        ? productCategory[0].categorylevel
+        : ""}`}>
+        {console.log(
+          productCategory[0] != undefined
+            ? productCategory[0].categorylevel
+            : ""
+        )}
+
+        {productCategory.map((categories,categoryindex) => {
+          console.log(categories);
+          return (
+            <li className={` subcategories subcategories__${categoryindex}`}>
+              <NavLink
+                activeClassName="active"
+                to={`/products/categories/${categories.path.replace(
+                  /,/g,
+                  "/"
+                )}`}
+              >
+                {categories.categoryname}
+              </NavLink>
+
+              {
+                //categories.subcategories
+                categories.subcategories !== undefined
+                  ? getproductCategory(categories.subcategories)
+                  : ""
+              }
+            </li>
+          );
         })}
       </ul>
     );
   }
-  return (
-    <div>
-      <ul>
-        {getparentCategories().map((products) => {
-          return (
-            <>
-              <li key={products._id}>
-                <NavLink activeClassName="active" to={products.path}>
-                  {products.category}
-                </NavLink>
-                {getSubCategories(products.path, 1)}
 
-              </li>
-
-              {getSubCategories(products.path, 2)}
-
-            </>
-          );
-        })}
-      </ul>
-    </div>
-  );
+  return <React.Fragment>
+    <nav>{getproductCategory(productCategory)}</nav>
+    </React.Fragment>
 }
 
 export default ProductCategory;

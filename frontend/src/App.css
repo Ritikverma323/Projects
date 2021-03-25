@@ -1,5 +1,5 @@
-*{
-  margin:0;
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -44,35 +44,89 @@
 
 .header__navigation {
   background-color: rgb(230, 219, 219);
-  padding: 20px;
+  padding: 5px;
+
 }
 
-
-.header__navigation ul{
-  display : flex;
+.header__navigation ul {
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
-
+  margin: 20px;
+  
+  background-color: azure;
+  position: relative;
 }
 
-.header__navigation ul li{
-
+.header__navigation ul li {
   list-style: none;
-color :rgb(245, 105, 105);
-text-transform: capitalize;
 
+  color: rgb(245, 105, 105);
+  text-transform: capitalize;
 }
 
-form{
-  margin:200px auto;
-  
+.header__navigation ul li {
+  margin: 20px;
+  padding: 20px;
 }
-.MuiPaper-root.MuiPaper-outlined{
-box-shadow: #282c34;
-background-color: aliceblue;
+form {
+  margin: 200px auto;
+}
+.MuiPaper-root.MuiPaper-outlined {
+  box-shadow: #282c34;
+  background-color: aliceblue;
 }
 
-.form__control{
-  margin:20px;
-  
+.form__control {
+  margin: 20px;
+}
+
+.header__navigation nav ul.categories__0 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 20px;
+}
+
+.header__navigation nav ul.categories__1 {
+  display: none;
+}
+
+.header__navigation nav ul li.subcategories:hover ul.categories__1 {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.header__navigation nav ul.categories__2 {
+  display: none;
+}
+
+.header__navigation nav ul.categories__1:hover ul.categories__2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.subcategories {
+  position: relative;
+}
+
+.subcategories ul {
+  position: absolute;
+  left: 0px;
+  margin: 10px 2px;
+  z-index: 4;
+}
+
+ul .categories__1 :hover {
+  position: relative;
+}
+
+ul .categories__1 :hover ul {
+  position: absolute;
+  left: 0px;
+  margin: 2px -20px;
 }

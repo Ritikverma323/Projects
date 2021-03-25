@@ -10,27 +10,57 @@ const ProductsCategory = (req, res) => {
     } else {
       //res.send(allCategory);
       const categories = getCategories(allcategories);
-      res.send(allcategories);
+      res.send(categories);
     }
   }).sort({ path: 1, categorylevel: 1 });
 };
 
-const getCategories = (allcategories) => {
-  const parentCategories = allcategories.filter((categories) => {
-    return categories.parent == null;
+const getsucategories = (parentcategory, allcategories) => {
+  let subcategory = allcategories.map((subcategories) => {
+    if (subcategories.parent == parentcategory.path) {
+      if (getsucategories(subcategories, allcategories).length) {
+        return {
+          categoryname: subcategories.category,
+          path: subcategories.path,
+          categorylevel:subcategories.categorylevel,
+          subcategories: getsucategories(subcategories, allcategories)
+        };
+      } else {
+        return {
+          categoryname: subcategories.category,
+          path: subcategories.path,
+          categorylevel:subcategories.categorylevel
+
+        };
+      }
+    }
   });
 
-  const subcategory = parentCategories.map((categories) => {
-    const category1 = allcategories.filter((categories1) => {
-      if (categories.parent != null) {
-        return categories1.parent;
-        //console.log(categories.path.includes(categories1.parent))
-      }
-    });
-    return category1;
+  // if subcategory have undefined and null value
+  subcategory = subcategory.filter((categories) => {
+    console.log(categories);
+    if (categories) {
+      return categories;
+    }
   });
 
   return subcategory;
+};
+
+const getCategories = (allcategories) => {
+  const categoryobject = [];
+  allcategories.map((parentcategory) => {
+    if (parentcategory.parent == null) {
+      categoryobject.push({
+        categoryname: parentcategory.category,
+        path: parentcategory.path,
+        categorylevel:parentcategory.categorylevel,
+        subcategories: getsucategories(parentcategory, allcategories)
+      });
+    }
+  });
+
+  return categoryobject;
 };
 
 const addNewProductCategory = (req, res) => {

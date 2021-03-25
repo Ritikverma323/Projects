@@ -7,13 +7,11 @@ function ComponentHeader() {
 
   return (
     <React.Fragment>
-      <div>
-       <ProductCategory/>
-      </div>
       <div className="header__navigation">
         <input type="text" placeholder="search" />
       </div>
       <div className="header__navigation">
+      
         <ul>
           <li>
             <NavLink activeClassName="active" to="/">
@@ -43,6 +41,10 @@ function ComponentHeader() {
           </li>
         </ul>
       </div>
+      <div className="header__navigation">
+       <ProductCategory/>
+      </div>
+
     </React.Fragment>
   );
 }
